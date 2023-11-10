@@ -10,15 +10,19 @@ import "hardhat/console.sol";
  * @author Neufi (https://neu.fi)
  */
 contract Kilim {
+	// Constant Variables
+	/// The WIDTH of the rectangular coordinate system
+	uint public constant WIDTH = 162;
+	/// The HEIGHT of the rectangular coordinate system
+	uint public constant HEIGHT = 100;
+
 	// State Variables
 	/// The name of the contract instance
 	string public name;
-	/// The width of the rectangular coordinate system
-	uint public immutable width;
-	/// The height of the rectangular coordinate system
-	uint public immutable height;
-	/// states[x][y] represents a rectangular coordinate system with boolean values where x < width and y < height
-	mapping(uint => mapping(uint => bool)) public states;
+	/// states[x][y] represents a rectangular coordinate system with boolean values where x < WIDTH and y < HEIGHT.
+	/// This two-dimensional array is essentially an array of arrays. states[x] arrays represent columns.
+	/// states[x][y] values are accessed as y'th elements in states[x] columns.
+	bool[HEIGHT][WIDTH] states;
 
 	// Events: a way to emit log statements from smart contract that can be listened to by external parties
 	/**
@@ -36,23 +40,29 @@ contract Kilim {
 
 	// Constructor: Called once on contract deployment
 	// Check packages/hardhat/deploy/00_deploy_kilim.ts
-	constructor(string memory _name, uint _width, uint _height) {
+	constructor(string memory _name) {
 		name = _name;
-		width = _width;
-		height = _height;
 	}
 
+    /// Modifier to check that the x and y coordinates are within the rectangular coordinate system of WIDTH and HEIGHT
+    modifier onlyValidCoordinates(uint _x, uint _y) {
+		// Make sure the parameters are within the limits
+		require( _x < WIDTH && _y < HEIGHT, "Invalid coordinates");
+
+        // Underscore is a special character only used inside
+        // a function modifier and it tells Solidity to
+        // execute the rest of the code.
+        _;
+    }
+
 	/**
-	 * Function that allows anyone to change the state in the given x and y coordinates
+	 * Function that allows anyone to change the state in the given x and y coordinates.
 	 *
-	 * @param _x The x coordinate of the cell to set state
-	 * @param _y The y coordinate of the cell to set state
+	 * @param _x The x coordinate of the cell to set state.
+	 * @param _y The y coordinate of the cell to set state.
 	 * @param _state The state to set the cell. Iff this is different from the current state, a Set event is emitted.
 	 */
-	function set(uint _x, uint _y, bool _state) public {
-		// Make sure the parameters are within the limits
-		require( _x < width && _y < height, "Invalid coordinate");
-
+	function setState(uint _x, uint _y, bool _state) public onlyValidCoordinates(_x, _y) {
 		// Update the state and throw the event only for updating the existing state
 		if(states[_x][_y] != _state) {
 			// Update the state for the given coordinates
@@ -60,5 +70,19 @@ contract Kilim {
 			// Emit a Set event with the given coordinates and the new state
 			emit Set(_x, _y, _state);
 		}
+	}
+
+	/**
+	 * Function that returns the boolean state in the given coordinates
+	 */
+	function getState(uint _x, uint _y) public view onlyValidCoordinates(_x, _y) returns (bool) {
+		return states[_x][_y];
+	}
+
+	/**
+	 * Function that returns the raw two-dimensional array of bool[HEIGHT][WIDTH] states
+	 */
+	function getStates() public view returns (bool[HEIGHT][WIDTH] memory) {
+		return states;
 	}
 }

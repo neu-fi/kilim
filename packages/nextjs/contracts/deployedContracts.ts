@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     Kilim: {
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      address: "0x0165878A594ca255338adfa4d48449f69242Eb8F",
       abi: [
         {
           inputs: [
@@ -15,16 +15,6 @@ const deployedContracts = {
               internalType: "string",
               name: "_name",
               type: "string",
-            },
-            {
-              internalType: "uint256",
-              name: "_width",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "_height",
-              type: "uint256",
             },
           ],
           stateMutability: "nonpayable",
@@ -57,12 +47,62 @@ const deployedContracts = {
         },
         {
           inputs: [],
-          name: "height",
+          name: "HEIGHT",
           outputs: [
             {
               internalType: "uint256",
               name: "",
               type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "WIDTH",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_x",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_y",
+              type: "uint256",
+            },
+          ],
+          name: "getState",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getStates",
+          outputs: [
+            {
+              internalType: "bool[100][162]",
+              name: "",
+              type: "bool[100][162]",
             },
           ],
           stateMutability: "view",
@@ -99,46 +139,9 @@ const deployedContracts = {
               type: "bool",
             },
           ],
-          name: "set",
+          name: "setState",
           outputs: [],
           stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          name: "states",
-          outputs: [
-            {
-              internalType: "bool",
-              name: "",
-              type: "bool",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "width",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
           type: "function",
         },
       ],

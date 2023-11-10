@@ -20,16 +20,11 @@ const deployKilim: DeployFunction = async function (hre: HardhatRuntimeEnvironme
   */
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
-  const constructorArgs = {
-    name: "Kilim | EthGünü 2023",
-    x: 100,
-    y: 100,
-  };
 
   await deploy("Kilim", {
     from: deployer,
     // Contract constructor arguments
-    args: [constructorArgs.name, constructorArgs.x, constructorArgs.y],
+    args: ["Kilim | EthGünü 2023"],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
