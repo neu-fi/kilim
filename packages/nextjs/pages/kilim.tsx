@@ -76,7 +76,7 @@ const KilimState = () => {
   const contractName = "Kilim";
   const { data: deployedContractData } = useDeployedContractInfo(contractName);
 
-  const { data, isLoading } = useContractRead({
+  const { data, error, status } = useContractRead({
     address: deployedContractData?.address,
     abi: deployedContractData?.abi,
     functionName: "getStates",
@@ -84,9 +84,11 @@ const KilimState = () => {
 
   return (
     <>
-      {isLoading && (
+      {status !== "success" && <p>{status}</p>}
+      {error && (
         <>
-          <p>Loading</p>
+          <p className="font-bold">{error.name}</p>
+          <p>{error.message}</p>
         </>
       )}
       {data !== null && data !== undefined && (
