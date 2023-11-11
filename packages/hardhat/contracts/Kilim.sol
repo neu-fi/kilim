@@ -15,9 +15,9 @@ import "hardhat/console.sol";
 contract Kilim is IKilim {
 	// Constant Variables
 	/// The WIDTH of the rectangular coordinate system
-	uint public constant WIDTH = 162;
+	uint public constant WIDTH = 132;
 	/// The HEIGHT of the rectangular coordinate system
-	uint public constant HEIGHT = 100;
+	uint public constant HEIGHT = 82;
 
 	// State Variables
 	/// The name of the contract instance

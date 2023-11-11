@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     HorizontalLine: {
-      address: "0x610178dA211FEF7D417bC0e6FeD39F05609AD788",
+      address: "0x0DCd1Bf9A1b36cE34237eEaFef220932846BCD82",
       abi: [
         {
           inputs: [
@@ -51,7 +51,7 @@ const deployedContracts = {
       ],
     },
     Kilim: {
-      address: "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318",
+      address: "0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0",
       abi: [
         {
           inputs: [
@@ -144,9 +144,9 @@ const deployedContracts = {
           name: "getStates",
           outputs: [
             {
-              internalType: "bool[100][162]",
+              internalType: "bool[82][132]",
               name: "",
-              type: "bool[100][162]",
+              type: "bool[82][132]",
             },
           ],
           stateMutability: "view",
@@ -184,6 +184,40 @@ const deployedContracts = {
             },
           ],
           name: "setState",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+    },
+    Motif: {
+      address: "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "contract IKilim",
+              name: "_kilim",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_lowerRightX",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_lowerRightY",
+              type: "uint256",
+            },
+          ],
+          name: "draw",
           outputs: [],
           stateMutability: "nonpayable",
           type: "function",
