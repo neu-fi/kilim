@@ -191,7 +191,7 @@ const deployedContracts = {
       ],
     },
     Motif: {
-      address: "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE",
+      address: "0x59b670e9fA9D0A427751Af201D676719a970857b",
       abi: [
         {
           inputs: [
@@ -205,19 +205,45 @@ const deployedContracts = {
           type: "constructor",
         },
         {
-          inputs: [
+          inputs: [],
+          name: "getHeight",
+          outputs: [
             {
               internalType: "uint256",
-              name: "_lowerRightX",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "_lowerRightY",
+              name: "",
               type: "uint256",
             },
           ],
-          name: "draw",
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getWidth",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_bottomRightX",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_bottomRightY",
+              type: "uint256",
+            },
+          ],
+          name: "weave",
           outputs: [],
           stateMutability: "nonpayable",
           type: "function",
