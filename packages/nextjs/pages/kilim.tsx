@@ -1,51 +1,9 @@
-import { Abi, AbiFunction } from "abitype";
 import type { NextPage } from "next";
 import { useContractRead } from "wagmi";
 import { MetaHeader } from "~~/components/MetaHeader";
-import { DisplayVariable } from "~~/components/scaffold-eth";
+import { Spinner } from "~~/components/assets/Spinner";
 import { useDeployedContractInfo } from "~~/hooks/scaffold-eth";
-import { Contract, ContractName } from "~~/utils/scaffold-eth/contract";
 import { getContractNames } from "~~/utils/scaffold-eth/contractNames";
-
-export const ContractVariable = ({
-  refreshDisplayVariables,
-  deployedContractData,
-  functionName,
-}: {
-  refreshDisplayVariables: boolean;
-  deployedContractData: Contract<ContractName>;
-  functionName: string;
-}) => {
-  if (!deployedContractData) {
-    return null;
-  }
-
-  const functionsToDisplay = (
-    (deployedContractData.abi as Abi).filter(part => part.type === "function") as AbiFunction[]
-  ).filter(fn => {
-    const isNameMatch = fn.name === functionName;
-    const isQueryableWithNoParams =
-      (fn.stateMutability === "view" || fn.stateMutability === "pure") && fn.inputs.length === 0;
-    return isNameMatch && isQueryableWithNoParams;
-  });
-
-  if (!functionsToDisplay.length) {
-    return <>Contract variable not found</>;
-  }
-
-  return (
-    <>
-      {functionsToDisplay.map(fn => (
-        <DisplayVariable
-          abiFunction={fn}
-          contractAddress={deployedContractData.address}
-          key={fn.name}
-          refreshDisplayVariables={refreshDisplayVariables}
-        />
-      ))}
-    </>
-  );
-};
 
 const contractNames = getContractNames();
 
@@ -58,18 +16,22 @@ const Pixel = ({ x, y, state }: { x: number; y: number; state: boolean }) => {
   );
 };
 
-const Canvas = ({ data }: { data: boolean[][] }) => {
-  const rows = data.map((row, rowIndex) => (
-    <div className="flex flex-col" key={rowIndex}>
-      {row
-        .map((cell, columnIndex) => (
-          <Pixel key={rowIndex + " " + columnIndex} x={rowIndex} y={columnIndex} state={cell} />
-        ))
-        .reverse()}
-    </div>
-  ));
+const Row = ({ row, rowIndex }: { row: boolean[]; rowIndex: number }) => {
+  return row
+    .map((cell, columnIndex) => <Pixel key={rowIndex + " " + columnIndex} x={rowIndex} y={columnIndex} state={cell} />)
+    .reverse();
+};
 
-  return <div className="flex flex-row">{rows}</div>;
+const Canvas = ({ rawStatesData }: { rawStatesData: boolean[][] }) => {
+  return (
+    <div className="flex flex-row">
+      {rawStatesData.map((row, rowIndex) => (
+        <div className="flex flex-col" key={rowIndex}>
+          <Row row={row} rowIndex={rowIndex} />
+        </div>
+      ))}
+    </div>
+  );
 };
 
 const KilimState = () => {
@@ -80,20 +42,20 @@ const KilimState = () => {
     address: deployedContractData?.address,
     abi: deployedContractData?.abi,
     functionName: "getStates",
+    watch: true,
+    onSettled(data, error) {
+      console.log("Settled", { data, error });
+    },
   });
 
   return (
     <>
-      {status !== "success" && <p>{status}</p>}
+      {data !== null && data !== undefined && <Canvas rawStatesData={data as boolean[][]} />}
+      {(status === "idle" || status === "loading") && <Spinner width="50px" height="50px" />}
       {error && (
         <>
-          <p className="font-bold">{error.name}</p>
-          <p>{error.message}</p>
-        </>
-      )}
-      {data !== null && data !== undefined && (
-        <>
-          <Canvas data={data as boolean[][]} />
+          <p className="mt-8 font-bold">{error.name}</p>
+          <p className="max-w-2xl text-gray-300">{error.message}</p>
         </>
       )}
     </>

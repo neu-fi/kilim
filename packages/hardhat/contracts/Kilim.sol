@@ -65,7 +65,7 @@ contract Kilim is IKilim {
 	 * @param _y The y coordinate of the cell to set state.
 	 * @param _state The state to set the cell. Iff this is different from the current state, a Set event is emitted.
 	 */
-	function setState(uint _x, uint _y, bool _state) public onlyValidCoordinates(_x, _y) {
+	function setState(uint _x, uint _y, bool _state) external onlyValidCoordinates(_x, _y) {
 		// Update the state and throw the event only for updating the existing state
 		if(states[_x][_y] != _state) {
 			// Update the state for the given coordinates
@@ -78,14 +78,14 @@ contract Kilim is IKilim {
 	/**
 	 * Function that returns the boolean state in the given coordinates
 	 */
-	function getState(uint _x, uint _y) public view onlyValidCoordinates(_x, _y) returns (bool) {
+	function getState(uint _x, uint _y) external view onlyValidCoordinates(_x, _y) returns (bool) {
 		return states[_x][_y];
 	}
 
 	/**
 	 * Function that returns the raw two-dimensional array of bool[HEIGHT][WIDTH] states
 	 */
-	function getStates() public view returns (bool[HEIGHT][WIDTH] memory) {
+	function getStates() external view returns (bool[HEIGHT][WIDTH] memory) {
 		return states;
 	}
 }
