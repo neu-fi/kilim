@@ -14,7 +14,7 @@ export type ScaffoldConfig = {
 
 const scaffoldConfig = {
   // The network where your DApp lives in
-  targetNetwork: chains.localhost,
+  targetNetwork: chains.hardhat,
   // The interval at which your front-end polls the RPC servers for new data
   // it has no effect on the local network
   pollingInterval: 30000,
@@ -41,13 +41,5 @@ const scaffoldConfig = {
    */
   walletAutoConnect: true,
 } satisfies ScaffoldConfig;
-
-scaffoldConfig.targetNetwork = {
-  ...scaffoldConfig.targetNetwork,
-  rpcUrls: {
-    default: { http: [(process.env.RPC_URL as "http://127.0.0.1:8545") || "http://127.0.0.1:8545"] },
-    public: { http: [(process.env.RPC_URL as "http://127.0.0.1:8545") || "http://127.0.0.1:8545"] },
-  },
-};
 
 export default scaffoldConfig;
