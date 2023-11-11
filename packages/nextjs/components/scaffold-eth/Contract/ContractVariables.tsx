@@ -18,7 +18,8 @@ export const ContractVariables = ({
   ).filter(fn => {
     const isQueryableWithNoParams =
       (fn.stateMutability === "view" || fn.stateMutability === "pure") && fn.inputs.length === 0;
-    return isQueryableWithNoParams;
+    const notCensored = fn.name !== "getStates";
+    return notCensored && isQueryableWithNoParams;
   });
 
   if (!functionsToDisplay.length) {
