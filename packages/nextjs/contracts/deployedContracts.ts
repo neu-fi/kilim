@@ -6,8 +6,52 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
   31337: {
+    HorizontalLine: {
+      address: "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "contract IKilim",
+              name: "_kilim",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_startX",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_endX",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_y",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "_state",
+              type: "bool",
+            },
+          ],
+          name: "draw",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+    },
     Kilim: {
-      address: "0x0165878A594ca255338adfa4d48449f69242Eb8F",
+      address: "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
       abi: [
         {
           inputs: [

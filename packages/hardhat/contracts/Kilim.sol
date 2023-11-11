@@ -1,15 +1,18 @@
 //SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
+// The interface of this contract that requires setState and getState functions
+import "./interfaces/IKilim.sol";
+
 // Useful for debugging. Remove when deploying to a live network.
 import "hardhat/console.sol";
 
 /**
- * @title A smart contract canvas that anyone can set pixels
+ * @title A smart contract kilim that anyone can set pixels
  * @notice Developed for ETHGünü (https://ethgunu.com)
  * @author Neufi (https://neu.fi)
  */
-contract Kilim {
+contract Kilim is IKilim {
 	// Constant Variables
 	/// The WIDTH of the rectangular coordinate system
 	uint public constant WIDTH = 162;
