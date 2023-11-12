@@ -2,6 +2,8 @@ import Link from "next/link";
 import fs from "fs";
 import matter from "gray-matter";
 import type { NextPage } from "next";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import path from "path";
 import { remark } from "remark";
 import html from "remark-html";
@@ -9,104 +11,26 @@ import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { MetaHeader } from "~~/components/MetaHeader";
 
 const Home: NextPage = ({ markdownData }: any) => {
+  const { t } = useTranslation();
   return (
     <>
       <MetaHeader />
-      <Hero />
-      <div className="flex items-center flex-col flex-grow pt-10">
-        <div className="p-4" dangerouslySetInnerHTML={{ __html: markdownData.contentHtml }} />
-        <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
-          <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <BugAntIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Tinker with your smart contract using the{" "}
-                <Link href="/debug" passHref className="link">
-                  Debug Contract
-                </Link>{" "}
-                tab.
+      <section className="bg-white dark:bg-gray-900">
+        <div className="max-w-screen-xl px-4 py-8 mx-auto lg:py-16">
+          <div className="grid items-center gap-8 mb-8 lg:mb-16 lg:gap-12 lg:grid-cols-12">
+            <div className="col-span-6 text-center sm:mb-6 lg:text-left lg:mb-0">
+              <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl xl:text-6xl dark:text-white">
+                {t("HEADER")}
+              </h1>
+              <p className="max-w-xl mx-auto mb-6 font-light text-gray-500 lg:mx-0 xl:mb-8 md:text-lg xl:text-xl dark:text-gray-400">
+                {t("WORKSHOP_DESCRIPTION")}
               </p>
             </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Explore your local transactions with the{" "}
-                <Link href="/blockexplorer" passHref className="link">
-                  Block Explorer
-                </Link>{" "}
-                tab.
-              </p>
+            <div className="col-span-6 flex lg:justify-end justify-center items-center mb-20">
+              <Canvas />
             </div>
           </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-export default Home;
-
-const EXAMPLE_PATTERN = [
-  [0, 0, 0, 1, 0, 0, 0],
-  [0, 0, 1, 1, 1, 0, 0],
-  [0, 1, 1, 1, 1, 1, 0],
-  [1, 1, 1, 1, 1, 1, 1],
-  [0, 0, 0, 1, 0, 0, 0],
-  [1, 1, 1, 1, 1, 1, 1],
-  [0, 1, 1, 1, 1, 1, 0],
-  [0, 0, 1, 1, 1, 0, 0],
-  [0, 0, 0, 1, 0, 0, 0],
-];
-
-const getState = (x: number, y: number) => {
-  return EXAMPLE_PATTERN[y % EXAMPLE_PATTERN.length][x % EXAMPLE_PATTERN[0].length];
-};
-
-const Pixel = ({ x, y }: { x: number; y: number }) => {
-  console.log("Pixel", { x, y }, "  ", getState(x, y));
-  return (
-    <div className={`${getState(x, y) ? "bg-black" : "bg-white"} box-border border h-1.5 w-1.5 2xl:h-2 2xl:w-2`} />
-  );
-};
-
-const Row = ({ row, rowIndex }: { row: boolean[]; rowIndex: number }) => {
-  return row
-    .map((cell, columnIndex) => <Pixel key={rowIndex + " " + columnIndex} x={rowIndex} y={columnIndex} />)
-    .reverse();
-};
-
-const Canvas = () => {
-  const rawStatesData = Array.from({ length: 91 }, () => false).map(() => {
-    return Array.from({ length: 54 }, () => false);
-  });
-  return (
-    <div className="flex flex-row">
-      {rawStatesData.map((row, rowIndex) => (
-        <div className="flex flex-col" key={rowIndex}>
-          <Row row={row} rowIndex={rowIndex} />
-        </div>
-      ))}
-    </div>
-  );
-};
-
-const Hero = () => (
-  <section className="bg-white dark:bg-gray-900">
-    <div className="max-w-screen-xl px-4 py-8 mx-auto lg:py-16">
-      <div className="grid items-center gap-8 mb-8 lg:mb-16 lg:gap-12 lg:grid-cols-12">
-        <div className="col-span-6 text-center sm:mb-6 lg:text-left lg:mb-0">
-          <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl xl:text-6xl dark:text-white">
-            ETHGunu Neufi Workshop
-          </h1>
-          <p className="max-w-xl mx-auto mb-6 font-light text-gray-500 lg:mx-0 xl:mb-8 md:text-lg xl:text-xl dark:text-gray-400">
-            This workshop is designed to provide a hands-on introduction to the concept of decentralized computing.
-          </p>
-        </div>
-        <div className="col-span-6 flex lg:justify-end justify-center items-center mb-20">
-          <Canvas />
-        </div>
-      </div>
-      {/* <div className="grid gap-8 sm:gap-12 md:grid-cols-3">
+          {/* <div className="grid gap-8 sm:gap-12 md:grid-cols-3">
         <div className="flex justify-center">
           <svg
             className="w-6 h-6 mr-3 text-primary-600 dark:text-primary-500 shrink-0"
@@ -172,23 +96,98 @@ const Hero = () => (
           </div>
         </div>
       </div> TODO: Change with goals of the workshop */}
+        </div>
+      </section>
+      <div className="flex items-center flex-col flex-grow pt-10">
+        <div className="p-4" dangerouslySetInnerHTML={{ __html: markdownData.contentHtml }} />
+        <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
+          <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
+            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
+              <BugAntIcon className="h-8 w-8 fill-secondary" />
+              <p>
+                Tinker with your smart contract using the{" "}
+                <Link href="/debug" passHref className="link">
+                  Debug Contract
+                </Link>{" "}
+                tab.
+              </p>
+            </div>
+            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
+              <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
+              <p>
+                Explore your local transactions with the{" "}
+                <Link href="/blockexplorer" passHref className="link">
+                  Block Explorer
+                </Link>{" "}
+                tab.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Home;
+
+const EXAMPLE_PATTERN = [
+  [0, 0, 0, 1, 0, 0, 0],
+  [0, 0, 1, 1, 1, 0, 0],
+  [0, 1, 1, 1, 1, 1, 0],
+  [1, 1, 1, 1, 1, 1, 1],
+  [0, 0, 0, 1, 0, 0, 0],
+  [1, 1, 1, 1, 1, 1, 1],
+  [0, 1, 1, 1, 1, 1, 0],
+  [0, 0, 1, 1, 1, 0, 0],
+  [0, 0, 0, 1, 0, 0, 0],
+];
+
+const getState = (x: number, y: number) => {
+  return EXAMPLE_PATTERN[y % EXAMPLE_PATTERN.length][x % EXAMPLE_PATTERN[0].length];
+};
+
+const Pixel = ({ x, y }: { x: number; y: number }) => {
+  return (
+    <div className={`${getState(x, y) ? "bg-black" : "bg-white"} box-border border h-1.5 w-1.5 2xl:h-2 2xl:w-2`} />
+  );
+};
+
+const Row = ({ row, rowIndex }: { row: boolean[]; rowIndex: number }) => {
+  return row
+    .map((cell, columnIndex) => <Pixel key={rowIndex + " " + columnIndex} x={rowIndex} y={columnIndex} />)
+    .reverse();
+};
+
+const Canvas = () => {
+  const rawStatesData = Array.from({ length: 91 }, () => false).map(() => {
+    return Array.from({ length: 54 }, () => false);
+  });
+  return (
+    <div className="flex flex-row">
+      {rawStatesData.map((row, rowIndex) => (
+        <div className="flex flex-col" key={rowIndex}>
+          <Row row={row} rowIndex={rowIndex} />
+        </div>
+      ))}
     </div>
-  </section>
-);
+  );
+};
 
-export async function getStaticProps({}) {
+export async function getStaticProps(context: any) {
   // Add the "await" keyword like this:
-  const markdownData = await getMarkdownData();
-
+  const { locale } = context;
+  const markdownData = await getMarkdownData(locale);
   return {
     props: {
       markdownData,
+      ...(await serverSideTranslations(locale)),
     },
   };
 }
 
-export async function getMarkdownData() {
-  const fullPath = path.join("../.././", `README.md`);
+export async function getMarkdownData(locale: string) {
+  const fullPath = path.join("../.././", `README${locale == "tr" ? ".tr" : ""}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   // Use gray-matter to parse the post metadata section
