@@ -15,13 +15,13 @@ import "hardhat/console.sol";
 contract Kilim is IKilim {
 	// Constant Variables
 	/// The WIDTH of the rectangular coordinate system
-	uint public constant WIDTH = 132;
+	uint constant WIDTH = 132;
 	/// The HEIGHT of the rectangular coordinate system
-	uint public constant HEIGHT = 82;
+	uint constant HEIGHT = 82;
 
 	// State Variables
 	/// The name of the contract instance
-	string public name;
+	string name;
 	/// states[x][y] represents a rectangular coordinate system with boolean values where x < WIDTH and y < HEIGHT.
 	/// This two-dimensional array is essentially an array of arrays. states[x] arrays represent columns.
 	/// states[x][y] values are accessed as y'th elements in states[x] columns.
@@ -73,6 +73,27 @@ contract Kilim is IKilim {
 			// Emit a Set event with the given coordinates and the new state
 			emit Set(_x, _y, _state);
 		}
+	}
+
+	/**
+	 * Function that returns the name of the contract
+	 */
+	function getName() external view returns (string memory) {
+		return name;
+	}
+
+	/**
+	 * Function that returns the width of the rectangular coordinate system
+	 */
+	function getWidth() external pure returns (uint) {
+		return WIDTH;
+	}
+
+	/**
+	 * Function that returns the height of the rectangular coordinate system
+	 */
+	function getHeight() external pure returns (uint) {
+		return HEIGHT;
 	}
 
 	/**

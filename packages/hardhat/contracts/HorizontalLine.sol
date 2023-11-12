@@ -40,4 +40,9 @@ contract HorizontalLine {
 			kilim.setState(x, _y, _state);
 		}
 	}
+
+	/// Returns the target kilim contract
+	function getKilim() view external returns (IKilim) {
+		return kilim;
+	}
 }

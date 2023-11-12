@@ -17,7 +17,7 @@ contract Motif {
     IKilim kilim;
 
 	/// A double array that represents a patterns to be printed on a kilim.
-    uint8[][] PATTERN = [
+    uint8[][] MOTIF = [
         [0,0,0,1,0,0,0],
         [0,0,1,1,1,0,0],
         [0,1,1,1,1,1,0],
@@ -26,7 +26,7 @@ contract Motif {
         [1,1,1,1,1,1,1],
         [0,1,1,1,1,1,0],
         [0,0,1,1,1,0,0],
-        [0,0,0,1,0,0,0]
+        [0,0,0,1,0,0,1]
     ];
 
 	// Constructor: Called once on contract deployment
@@ -36,33 +36,43 @@ contract Motif {
 	}
 
 	/**
-	 * Draws the hardcoded pattern on the kilim with the given coordinate for the bottom right of the pattern.
+	 * Weaves the hardcoded motif on the kilim with the given coordinate for the bottom right of the motif.
 	 *
-	 * @param _bottomRightX The x coordinate of the pattern's bottom right pixel.
-	 * @param _bottomRightY The y coordinate of the pattern's bottom right pixel.
+	 * @param _bottomRightX The x coordinate of the motif's bottom right pixel.
+	 * @param _bottomRightY The y coordinate of the motif's bottom right pixel.
 	 */
 	function weave(uint _bottomRightX, uint _bottomRightY) public {
-		for ( uint i = 0; i < PATTERN.length; i++ ) {
-			for ( uint j = 0; j < PATTERN[i].length; j++ ) {
+		for ( uint i = 0; i < MOTIF.length; i++ ) {
+			for ( uint j = 0; j < MOTIF[i].length; j++ ) {
 				uint x = _bottomRightX + j;
 				uint y = _bottomRightY + i;
-				bool state = PATTERN[PATTERN.length - 1 - i][j] != 0;
+				bool state = MOTIF[MOTIF.length - 1 - i][j] != 0;
 				kilim.setState(x, y, state);
 			}
 		}
 	}
 
-	/// Returns the height of the pattern
-	function getHeight() view external returns (uint) {
-		return PATTERN.length;
+	/// Returns the target kilim contract
+	function getKilim() view external returns (IKilim) {
+		return kilim;
 	}
 
-	/// Returns the width of the pattern
+	/// Returns the motif's pattern
+	function getMotif() view external returns (uint8[][] memory) {
+		return MOTIF;
+	}
+
+	/// Returns the height of the motif
+	function getHeight() view external returns (uint) {
+		return MOTIF.length;
+	}
+
+	/// Returns the width of the motif
 	function getWidth() view external returns (uint) {
 		uint maxWidth = 0;
-		for ( uint i = 0; i < PATTERN.length; i++ ) {
-			if ( maxWidth < PATTERN[i].length ) {
-				maxWidth = PATTERN[i].length;
+		for ( uint i = 0; i < MOTIF.length; i++ ) {
+			if ( maxWidth < MOTIF[i].length ) {
+				maxWidth = MOTIF[i].length;
 			}
 		}
 		return maxWidth;

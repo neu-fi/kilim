@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     HorizontalLine: {
-      address: "0x0DCd1Bf9A1b36cE34237eEaFef220932846BCD82",
+      address: "0x09635F643e140090A9A8Dcd712eD6285858ceBef",
       abi: [
         {
           inputs: [
@@ -48,10 +48,23 @@ const deployedContracts = {
           stateMutability: "nonpayable",
           type: "function",
         },
+        {
+          inputs: [],
+          name: "getKilim",
+          outputs: [
+            {
+              internalType: "contract IKilim",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
       ],
     },
     Kilim: {
-      address: "0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0",
+      address: "0x7a2088a1bFc9d81c55368AE168C2C02570cB814F",
       abi: [
         {
           inputs: [
@@ -91,7 +104,7 @@ const deployedContracts = {
         },
         {
           inputs: [],
-          name: "HEIGHT",
+          name: "getHeight",
           outputs: [
             {
               internalType: "uint256",
@@ -99,17 +112,17 @@ const deployedContracts = {
               type: "uint256",
             },
           ],
-          stateMutability: "view",
+          stateMutability: "pure",
           type: "function",
         },
         {
           inputs: [],
-          name: "WIDTH",
+          name: "getName",
           outputs: [
             {
-              internalType: "uint256",
+              internalType: "string",
               name: "",
-              type: "uint256",
+              type: "string",
             },
           ],
           stateMutability: "view",
@@ -154,15 +167,15 @@ const deployedContracts = {
         },
         {
           inputs: [],
-          name: "name",
+          name: "getWidth",
           outputs: [
             {
-              internalType: "string",
+              internalType: "uint256",
               name: "",
-              type: "string",
+              type: "uint256",
             },
           ],
-          stateMutability: "view",
+          stateMutability: "pure",
           type: "function",
         },
         {
@@ -191,7 +204,7 @@ const deployedContracts = {
       ],
     },
     Motif: {
-      address: "0x59b670e9fA9D0A427751Af201D676719a970857b",
+      address: "0xc5a5C42992dECbae36851359345FE25997F5C42d",
       abi: [
         {
           inputs: [
@@ -212,6 +225,32 @@ const deployedContracts = {
               internalType: "uint256",
               name: "",
               type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getKilim",
+          outputs: [
+            {
+              internalType: "contract IKilim",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getMotif",
+          outputs: [
+            {
+              internalType: "uint8[][]",
+              name: "",
+              type: "uint8[][]",
             },
           ],
           stateMutability: "view",
