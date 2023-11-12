@@ -152,7 +152,9 @@ const getState = (x: number, y: number) => {
 
 const Pixel = ({ x, y }: { x: number; y: number }) => {
   return (
-    <div className={`${getState(x, y) ? "bg-black" : "bg-white"} box-border border h-1.5 w-1.5 2xl:h-2 2xl:w-2`} />
+    <div
+      className={`${getState(x, y) ? "bg-black" : "bg-white"} lg:box-border lg:border h-1.5 w-1.5 2xl:h-2 2xl:w-2`}
+    />
   );
 };
 
