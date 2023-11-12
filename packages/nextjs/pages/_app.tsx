@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { AppProps } from "next/app";
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
 import "@rainbow-me/rainbowkit/styles.css";
+import { appWithTranslation } from "next-i18next";
 import NextNProgress from "nextjs-progressbar";
 import { Toaster } from "react-hot-toast";
 import { useDarkMode } from "usehooks-ts";
@@ -53,4 +54,4 @@ const ScaffoldEthApp = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default ScaffoldEthApp;
+export default appWithTranslation(ScaffoldEthApp);
