@@ -10,9 +10,14 @@ const contractNames = getContractNames();
 const Pixel = ({ x, y, state }: { x: number; y: number; state: boolean }) => {
   return (
     <div
-      className={`${state ? "bg-black" : "bg-white"} box-border border h-1.5 w-1.5 2xl:h-2 2xl:w-2`}
-      onClick={() => alert(`{ x: ${x}, y: ${y}, state: ${state} }`)}
-    />
+      className={`group relative box-border border h-1.5 w-1.5 2xl:h-2 2xl:w-2 ${
+        state ? "bg-black hover:bg-blue-700 select:bg-blue-700" : "bg-white hover:bg-blue-300 select:bg-blue-300"
+      }`}
+    >
+      <span className="z-50 absolute invisible group-hover:visible bg-blue-700 p-1 text-sm text-gray-100 rounded-md -top-10 -left-12 w-24 text-center cursor-default">
+        {`x: ${x}, y: ${y}`}
+      </span>
+    </div>
   );
 };
 
