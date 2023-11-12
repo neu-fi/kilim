@@ -18,7 +18,7 @@ if [ -f ".env.example" ]; then
         FULL_URL="${PREPEND_STRING}${HOSTNAME}${DOT}${GITPOD_WORKSPACE_CLUSTER_HOST}"
 
         # Append NEXT_GITPOD_RPC_URL to .env.local
-        echo "NEXT_PUBLIC_GITPOD_RPC_URL=$FULL_URL" >> .env.local
+        echo -e "\nNEXT_PUBLIC_GITPOD_RPC_URL=$FULL_URL" >> .env.local
         echo "NEXT_PUBLIC_GITPOD_RPC_URL set in .env.local"
     fi
 else
