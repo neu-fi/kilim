@@ -10,7 +10,7 @@ const contractNames = getContractNames();
 const Pixel = ({ x, y, state }: { x: number; y: number; state: boolean }) => {
   return (
     <div
-      className={`group relative lg:box-border lg:border h-1.5 w-1.5 2xl:h-2 2xl:w-2 ${
+      className={`group relative h-1 w-1 lg:box-border lg:border lg:h-1.5 lg:w-1.5 2xl:h-2 2xl:w-2 ${
         state ? "bg-black hover:bg-blue-700 select:bg-blue-700" : "bg-white hover:bg-blue-300 select:bg-blue-300"
       }`}
     >
