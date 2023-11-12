@@ -163,7 +163,7 @@ const Row = ({ row, rowIndex }: { row: boolean[]; rowIndex: number }) => {
 };
 
 const Canvas = () => {
-  const rawStatesData = Array.from({ length: 91 }, () => false).map(() => {
+  const rawStatesData = Array.from({ length: 84 }, () => false).map(() => {
     return Array.from({ length: 54 }, () => false);
   });
   return (

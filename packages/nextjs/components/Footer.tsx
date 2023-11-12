@@ -39,7 +39,7 @@ export const Footer = () => {
               </>
             )}
           </div>
-          <SwitchLocale className={`pointer-events-auto ${isLocalNetwork ? "self-end md:self-auto" : ""}`} />
+          <SwitchLocale className={`pointer-events-auto`} />
         </div>
       </div>
       <div className="w-full">
