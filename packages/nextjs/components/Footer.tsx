@@ -50,7 +50,7 @@ export const Footer = () => {
                 rel="noreferrer"
                 className="link"
               >
-                Workshop Support on Gitter
+                Support on Gitter
               </a>
             </div>
             <span>·</span>
@@ -72,12 +72,6 @@ export const Footer = () => {
                 rel="noreferrer"
               >
                 <span className="link">Neufi</span>
-              </a>
-            </div>
-            <span>·</span>
-            <div className="text-center">
-              <a href="http://github.com/neu-fi/kilim" target="_blank" rel="noreferrer" className="link">
-                Fork me on GitHub
               </a>
             </div>
           </div>
