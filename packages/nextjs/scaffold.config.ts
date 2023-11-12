@@ -12,9 +12,26 @@ export type ScaffoldConfig = {
   walletAutoConnect: boolean;
 };
 
+const gitpodHardhatNetwork = {
+  ...chains.hardhat,
+  rpcUrls: {
+    default: {
+      http: [process.env.NEXT_PUBLIC_GITPOD_RPC_URL as string],
+    },
+    public: {
+      http: [process.env.NEXT_PUBLIC_GITPOD_RPC_URL as string],
+    },
+  },
+};
+
+const hardhatNetwork = process.env.NEXT_PUBLIC_GITPOD_RPC_URL ? gitpodHardhatNetwork : chains.hardhat;
+
 const scaffoldConfig = {
   // The network where your DApp lives in
-  targetNetwork: chains.hardhat,
+  // Default: hardhatNetwork (For local development, possibly on Gitpod)
+  // Testnet: chains.sepolia
+  targetNetwork: hardhatNetwork,
+
   // The interval at which your front-end polls the RPC servers for new data
   // it has no effect on the local network
   pollingInterval: 30000,
@@ -42,15 +59,4 @@ const scaffoldConfig = {
   walletAutoConnect: true,
 } satisfies ScaffoldConfig;
 
-scaffoldConfig.targetNetwork = {
-  ...scaffoldConfig.targetNetwork,
-  rpcUrls: {
-    default: {
-      http: [(process.env.NEXT_PUBLIC_GITPOD_RPC_URL as "http://127.0.0.1:8545") || "http://127.0.0.1:8545"],
-    },
-    public: {
-      http: [(process.env.NEXT_PUBLIC_GITPOD_RPC_URL as "http://127.0.0.1:8545") || "http://127.0.0.1:8545"],
-    },
-  },
-};
 export default scaffoldConfig;
