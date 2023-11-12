@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { config } from "dotenv";
 import { Address as AddressType, createWalletClient, http, parseEther } from "viem";
 import { hardhat } from "viem/chains";
 import { useNetwork } from "wagmi";
@@ -7,11 +8,25 @@ import { Address, AddressInput, Balance, EtherInput, getParsedError } from "~~/c
 import { useTransactor } from "~~/hooks/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
 
+config();
+
 // Account index to use from generated hardhat accounts.
 const FAUCET_ACCOUNT_INDEX = 0;
 
+const RPC_URL = process.env.NEXT_PUBLIC_GITPOD_RPC_URL || "http://localhost:8545";
+
 const localWalletClient = createWalletClient({
-  chain: hardhat,
+  chain: {
+    ...hardhat,
+    rpcUrls: {
+      default: {
+        http: [RPC_URL],
+      },
+      public: {
+        http: [RPC_URL],
+      },
+    },
+  },
   transport: http(),
 });
 

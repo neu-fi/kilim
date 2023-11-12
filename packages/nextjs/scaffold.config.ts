@@ -42,4 +42,15 @@ const scaffoldConfig = {
   walletAutoConnect: true,
 } satisfies ScaffoldConfig;
 
+scaffoldConfig.targetNetwork = {
+  ...scaffoldConfig.targetNetwork,
+  rpcUrls: {
+    default: {
+      http: [(process.env.NEXT_PUBLIC_GITPOD_RPC_URL as "http://127.0.0.1:8545") || "http://127.0.0.1:8545"],
+    },
+    public: {
+      http: [(process.env.NEXT_PUBLIC_GITPOD_RPC_URL as "http://127.0.0.1:8545") || "http://127.0.0.1:8545"],
+    },
+  },
+};
 export default scaffoldConfig;
