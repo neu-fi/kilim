@@ -16719,7 +16719,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "se-2@workspace:."
   dependencies:
-    "@tailwindcss/typography": ^0.5.10
     husky: ^8.0.1
     lint-staged: ^13.0.3
   languageName: unknown
