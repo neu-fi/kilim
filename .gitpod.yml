@@ -2,7 +2,7 @@ tasks:
   - name: App
     init: >
       yarn &&
-      chmod +x packages/nextjs/setup_env.sh && ./packages/nextjs/setup_env.sh &&-
+      chmod +x packages/nextjs/setup_env.sh && ./packages/nextjs/setup_env.sh &&
       gp sync-done install
     command: REACT_APP_PROVIDER=$(gp url 8545) yarn start
   - name: Chain
