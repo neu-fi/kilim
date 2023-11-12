@@ -27,10 +27,13 @@ const gitpodHardhatNetwork = {
 const hardhatNetwork = process.env.NEXT_PUBLIC_GITPOD_RPC_URL ? gitpodHardhatNetwork : chains.hardhat;
 
 const scaffoldConfig = {
-  // The network where your DApp lives in
+  // The network where your DApp lives in. You can set targetNetwork to any variable you wish.
   // Default: hardhatNetwork (For local development, possibly on Gitpod)
   // Testnet: chains.sepolia
-  targetNetwork: hardhatNetwork,
+  targetNetwork:
+    process.env.NEXT_PUBLIC_EVM_NETWORK && process.env.NEXT_PUBLIC_EVM_NETWORK === "Sepolia"
+      ? chains.sepolia
+      : hardhatNetwork,
 
   // The interval at which your front-end polls the RPC servers for new data
   // it has no effect on the local network
