@@ -234,7 +234,6 @@ const deployMyContract: DeployFunction = async function (hre: HardhatRuntimeEnvi
 
 export default deployMyContract;
 deployMyContract.tags = ["MyContract"];
-
 ```
 
 #### Deploy to Sepolia
@@ -247,14 +246,23 @@ In `packages/hardhat`, where you have `.env.example`, create an `.env` file. In 
 DEPLOYER_PRIVATE_KEY=yourWalletPrivateKey
 ```
 
-Then, deploy to Sepolia with the following command:
+On the new deployment script, put the Kilim's address on Sepolia that we use in this workshop:
 ```
-yarn deploy --network sepolia
+  await deploy("MyContract", {
+    from: deployer,
+    args: ["0x984D21223E7b9328a862eD80BCe33e6B367Fa672"],
+    log: true,
+  });
+```
+
+Then, deploy your new contract to Sepolia with the following command:
+```
+yarn deploy --network sepolia --tags MyContract
 ```
 
 The contract adresses are displayed in the following format:
 ```
-deployed at 0xFb657C06BC677B7733161bdb95D496D29ACFaF85
+deployed at 0xFb657C06BC677B.......db95D496D29ACFaF85
 ```
 
 
