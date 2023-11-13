@@ -1,17 +1,23 @@
 # Kilim
-> The ETHGünü Neufi Workshop
+> Neufi's Interactive dApp Workshop for ETHGünü at Devconnect 2023
 
 ## Introduction
 Welcome to the ETHGünü Neufi Workshop. Our session will be dedicated to exploring the dynamic world of Ethereum smart contracts. This workshop is designed to provide a hands-on introduction to the concept of decentralized computing. By actively participating in a collaborative drawing canvas, you'll gain firsthand experience in interacting with smart contracts. If you're up for the challenge, you can modify our example smart contracts to interact with the canvas programatically. We hope that some participants will be deploying custom smart contracts and other participants interact with these contracts developed in this workshop!
 
 ## Workshop Overview
-Our session revolves around a canvas smart contract, where the objective is to collaboratively craft an artwork by coloring pixels on a rectangular grid (132x82) on the Kilim contract. These pixels are initially white, and can be set to black or white. This goal of this activity is to serve as a practical way to understand and run smart contracts that exist on the blockchain.
+Our session revolves around a canvas smart contract, where the objective is to collaboratively craft an artwork by coloring pixels on a rectangular grid (132x82) on the Kilim contract. These pixels are initially white, and can be set to black or white. 
+
+You can interact with the Kilim contract, or interact with other contracts to do things more interesting than setting a single pixel. You can even write your own contract, such as one that draws a pattern, and share it with your friends to let them use it.
 
 ## The Goal of This Workshop
+This goal of this activity is to serve as a practical way to understand and run smart contracts on blockchain.
+
 By the end of this workshop, you will have not only contributed to a collective digital pixelart but also gained a fundamental understanding of decentralized computing through practical application. We're excited to guide you through this journey into the world of Ethereum and look forward to seeing your creativity unfold on the digital canvas!
 
+In the meantime, you'll understand the concepts of smart contract programs running on blockchain way better.
+
 ## The Contracts
-To make this experience user-friendly, we'll be utilizing a frontend interface built on the Scaffold-ETH-2 framework. This interface, familiar to those who attended the previous workshop with Eda, lets you see the state of the kilim and interact with the contracts.
+To make this experience user-friendly, we'll be utilizing a frontend interface built on the Scaffold-ETH-2 framework. This interface, familiar to those who attended the previous workshop, lets you see the state of the kilim and interact with the contracts.
 
 
 ## Tips for Participants
@@ -41,41 +47,27 @@ The `draw` function takes `startX`, `endX`, `y`, and `state` as parameters. Upon
 ## How to Participate?
 We suggest three primary ways to participate in this workshop.
 
-### 1. Coordinating on Gitter
+### A. Coordinating on Gitter
 It's all coordination. Whether you'd like to see some interesting artwork on the canvas or want others to use your cool contract to print something interesting, use the Gitter chat to coordinate with your peers. 
 
 Seek support on the relevant channels in Gitter, so that anyone can help.
 
-### 2. Web3 Wallet Interaction
+### B. Web3 Wallet Interaction (Section 1)
 We've deployed the contacts to Sepolia network. You can get some Sepolia testnet ether for free and interact with the contracts from your computer or mobile phone.
 
 
-### 3. Developing Custom Smart Contracts
+### C. Developing Custom Smart Contracts (Sections 2 & 3)
 An alternative approach involves deploying new smart contracts that interact with our canvas contract to alter pixel states. We've prepared some example contracts for this method. Feel free to utilize these examples as-is or modify them to explore different functionalities.
 
-## Web3 Wallet Interaction
-The insturctions below are for calling `setState` on `Kilim` but interacting with any contract is a similar experience.
-
-You can interact with the canvas contract directly through a web browser, using a Web3 wallet like MetaMask. This method involves executing a function on the canvas contract through a transaction. You can specify the pixel coordinates `(x,y)` you wish to alter and execute the function with those parameters.
-
-Using Etherscan for Contract Interaction
+## Section 1: Using Etherscan
 
 ### Prerequisites
-- A Web3 wallet (like MetaMask) with some test Ether on the Sepolia testnet.
-- Familiarity with Etherscan, a blockchain explorer for Ethereum networks.
+- A Web3 wallet (like MetaMask)
+- Some test Ether on the Sepolia testnet.
 
-# Instructions for Interacting with the "Kilim" Smart Contract
+### Summary
 
-The "Kilim" smart contract, designed for the ETHGunu Neufi Workshop, essentialy acts as a blockchain-based canvas. Below are detailed steps for each method of interaction with this contract.
-
-## Method 1: 
-## Method 2: Deploying New Smart Contracts
-
-### Using Etherscan
-
-Anyone can use any contract deployed to Ethereum using Etherscan.
-
-* Go to https://sepolia.etherscan.io/
+* Go to https://sepolia.etherscan.io
 * Enter the contract address
 * Go to the "Contract" tab
 * Make sure that the contract is verified and you see the following sub-tabs:
@@ -89,7 +81,14 @@ Anyone can use any contract deployed to Ethereum using Etherscan.
 * Set the parameters and hit "Write"
 
 
-### Steps
+### Example Steps
+
+The insturctions below are for calling `setState` on `Kilim` but interacting with any contract is a similar experience.
+
+You can interact with the canvas contract directly through a web browser, using a Web3 wallet like MetaMask. This method involves executing a function on the canvas contract through a transaction. You can specify the pixel coordinates `(x,y)` you wish to alter and execute the function with those parameters.
+
+Using Etherscan for Contract Interaction
+
 1. **Locate the Contract on Etherscan**:
    - Navigate to the Sepolia version of [Etherscan](https://sepolia.etherscan.io).
    - Enter the contract address for "Kilim" in the search bar and go to the contract's page.
@@ -112,15 +111,17 @@ Anyone can use any contract deployed to Ethereum using Etherscan.
    - Note that this will consume a small amount of test Ether as gas.
 
 5. **Verify the Transaction**:
-   - Once the transaction is confirmed, you can go back to the game interface to see your changes on the canvas.
+   - Once the transaction is confirmed, you can go back to the Kilim interface to see your changes on the canvas.
    - Alternatively, check the transaction receipt on Etherscan for details like block number and gas used.
 
 
 By following these methods, you can interact with the "Kilim" smart contract in various ways, depending on your level of comfort and technical expertise. Whether you’re scripting directly, deploying a new contract, or simply using a Web3 wallet, each method offers a unique perspective on interacting with Ethereum smart contracts.
 
 
-## Setting Up Gitter for Developing Custom Smart Contracts
-Welcome to the setup guide for the ETHGünü Neufi Workshop! We're using Gitpod to ensure everyone has a consistent development environment. Don't worry if you're new to this; just follow these step-by-step instructions.
+## Section 2: Setting a Development Environment for Developing Your Own Contracts
+We're using Gitpod to ensure everyone has a consistent development environment. Don't worry if you're new to this; just follow these step-by-step instructions.
+
+Advanced tip: If you already have the tools, you may clone the [GitHub repo](https://github.com/neu-fi/kilim) to your computer as well. If you can set it up well, you can skip to Section 3.
 
 ### Step 1: Create a GitHub Account
 - **What is GitHub?** It's a platform where developers store and manage their code.
@@ -179,18 +180,23 @@ Navigate to the "Kilim" page. In your initial setup this page will render your l
 ![gitpod8](https://hackmd.io/_uploads/SJmkGvCQ6.png)
 
 #### 3. Draw A Motif On Your Test Contract
-...
 
+To draw a motif on your test contract in the Gitpod environment, follow these steps:
 
-## Developing Custom Smart Contracts
+1. **Choose a Motif Contract:** Select a pre-written motif contract, like the 'Motif' or the 'HorizontalLine' contract, or create your own.
+2. **Set Coordinates and Parameters:** Input the desired coordinates (x, y) for the bottom left pixel of your motif. If you're using a pre-written contract, these coordinates will determine where the motif begins.
+3. **Execute the Function:** Use the provided interface in your Gitpod environment to call the "**weave**" or similar function in your chosen motif contract. This will interact with the Kilim contract and draw your motif on the canvas.
+4. **View the Result:** Once the transaction is confirmed, you can view the updated canvas in your Gitpod environment to see your motif.
+
+## Section 3: Developing Custom Smart Contracts
 
 ### Prerequisites
 - Basic understanding of smart contract deployment.
 - Familiarity with Ethereum development tools.
 
 ### Summary
-1. **Understand the Main Contract:** Analyze the `Kilim` contract, focusing on how it manages the canvas' state.
-2. **Create a New Contract:** Write a new smart contract that interacts with `Kilim`. Your contract could, for instance, change multiple pixels simultaneously or create predefined patterns.
+1. **Understand the main contract:** Analyze the `Kilim` contract, focusing on how it manages the canvas' state.
+2. **Create a new contract:** Write a new smart contract that interacts with `Kilim`. Your contract could, for instance, change multiple pixels simultaneously or create predefined patterns.
 3. **Write the deployment script:** You can modify the existing scripts.
 4. **Test locally:** Deploy your new contract and play with it.
 5. **Deploy to Sepolia:** Use the Hardhat environment in Gitpod to deploy your new contract to the Sepolia testnet.
@@ -199,7 +205,38 @@ Navigate to the "Kilim" page. In your initial setup this page will render your l
 
 ### Steps
 
+#### Create a new contract
+In `packages/hardhat/contracts`, create a new file such as `YourContract.sol`. You can copy and paste one of our example contracts that interact with the kilim contract. They're `HorizontalLine.sol`, and `Motif.sol`.
+
+
 #### Write the deployment script
+In `packages/hardhat/deploy`, create a new file such as `03_deploy_my_contract.ts`. These files are run sorted by alphabetically, therefore it's important that your file starts with `03_`.
+
+Write your deployment script like the examples in `01_deploy_horizontal_line.ts` or `02_deploy_motif.ts`. Here's an example file:
+
+```
+import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { DeployFunction } from "hardhat-deploy/types";
+
+const deployMyContract: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+  const { deployer } = await hre.getNamedAccounts();
+  const { deploy } = hre.deployments;
+
+  const kilim = await hre.ethers.getContract("Kilim", deployer);
+
+  await deploy("MyContract", {
+    from: deployer,
+    // Contract constructor arguments
+    args: [kilim.address],
+    log: true,
+    autoMine: true,
+  });
+};
+
+export default deployMyContract;
+deployMyContract.tags = ["MyContract"];
+
+```
 
 #### Deploy to Sepolia
 You need an account with Sepolia testnet ether for the following steps. We suggest that you use a seperate Ethereum account for development as you will expose its private key. If you use MetaMask, you can create a new account by clicking the account name dropdown that defaults to "Account 1".
@@ -239,14 +276,22 @@ If you see rate limits on verification, follow the docs on: https://docs.scaffol
 
 #### Interact on Sepolia
 
+##### Using Etherscan
+On the Etherscan page of your contract, you can interact with your freshly deployed and verified contract. Since you haven't developed a frontend yet, this is the best way you can share your contract.
+
+
+**Sharing Your Work:** If satisfied with your contract, share its address and functionality with other participants through Gitter.
+
 ##### Using the local web server yourself
 
 You can connect a Sepolia wallet to the website and interact with your new contract in "Debug Contracts". However, your friends will not see your new contract on the deployed instance of this website.
 
-You can do this by creating an `.env.local` file in `packages/nextjs` with the following content:
+**Connect to Sepolia:** In the `packages/nextjs` directory, set up your `.env.local` file to connect the local web server to the Sepolia network with the following content:
 
 ```
 NEXT_PUBLIC_EVM_NETWORK=Sepolia
 ```
 
-Deleting this variable would return your environment back to the development default.
+**Interact with Your Contract:** Once connected, use the "Debug Contracts" section in your local web server to interact with your newly deployed contract.
+
+**Testing:** Experiment with your contract's functions and observe their effects on the Kilim canvas.
