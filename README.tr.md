@@ -239,3 +239,47 @@ deployMyContract.tags = ["MyContract"];
 Aşağıdaki adımlar için Sepolia test ağındaki bir hesaba ihtiyacınız olacak. Özel anahtarınızı açığa çıkaracağınız için geliştirme için ayrı bir Ethereum hesabı kullanmanızı öneririz. MetaMask kullanıyorsanız, varsayılan olarak "Hesap 1" olan hesap adı menüsünden yeni bir hesap oluşturabilirsiniz.
 
 MetaMask'ta, özel anahtarınızı yönergeleri takip ederek kopyalayabilirsiniz: https://support.metamask.io/hc/en-us/articles/360015289632
+
+`packages/hardhat/.env` dosyasini olusturup icine private key'inizi yapistirin:
+
+```
+DEPLOYER_PRIVATE_KEY=yourWalletPrivateKey
+```
+
+Onceki dagitim betiginizdeki Kilim adresi yerine Sepolia'dakini koyun:
+```
+await deploy("MyContract", {
+ from: deployer,
+ args: ["0x984D21223E7b9328a862eD80BCe33e6B367Fa672"],
+ log: true,
+});
+```
+
+Ve son adim:
+```
+yarn deploy --network sepolia --tags MyContract
+```
+
+Deploy basarili ise adresini goreceksiniz.
+```
+deployed at 0xFb657C06BC677B.......db95D496D29ACFaF85
+```
+
+https://sepolia.etherscan.io adresinden kontrata bakabilirsiniz.
+
+Simdi kontratin kaynak kodunu dogrulamak icin yukleyecegiz:
+```
+yarn verify --network sepolia
+```
+
+Eger "rate limit" alirsaniz yeni key almak icin yonergelere bakabilirsiniz:  https://docs.scaffoldeth.io/deploying/deploy-smart-contracts#configuration-of-third-party-services-for-production-grade-apps
+
+#### Sepolia'da kullanma
+
+Etherscan kullarak konratiniz ile etkilesebilirsiniz.
+
+Eger calistirdiginiz nextjs uygulamasini kullanmak istiyorsaniz `packages/nextjs` klasorunde `.env.local`e su variable'i koyabilirsiniz:
+
+```
+NEXT_PUBLIC_EVM_NETWORK=Sepolia
+```
