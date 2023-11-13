@@ -16,14 +16,13 @@ By the end of this workshop, you will have not only contributed to a collective 
 
 In the meantime, you'll understand the concepts of smart contract programs running on blockchain way better.
 
-## The Contracts
-To make this experience user-friendly, we'll be utilizing a frontend interface built on the Scaffold-ETH-2 framework. This interface, familiar to those who attended the previous workshop, lets you see the state of the kilim and interact with the contracts.
-
-
 ## Tips for Participants
 - **Ask for help**: Don’t hesitate to ask on the support channels on Gitter. If it's getting loud, kindly prefer Gitter over talking.
 - **Experiment**: Once set up, feel free to explore and experiment within the Gitpod environment.
 - **Collaborate with Others**: Remember, this workshop is not just about learning new skills, but also about collaboration. Engage with your fellow participants, share ideas, and solve problems together. This collaborative approach can enhance your learning experience and lead to more creative outcomes.
+
+## The Contracts
+To make this experience user-friendly, we'll be utilizing a frontend interface built on the Scaffold-ETH-2 framework. This interface, familiar to those who attended the previous workshop, lets you see the state of the kilim and interact with the contracts.
 
 
 ### Kilim ([View on Sepolia](https://sepolia.etherscan.io/address/0x984D21223E7b9328a862eD80BCe33e6B367Fa672#code))
