@@ -1,5 +1,8 @@
 # Kilim
 > Neufi's Interactive dApp Workshop for ETHGünü at Devconnect 2023
+* Website: https://ethgunu.vercel.app/en
+* GitHub: https://github.com/neu-fi/kilim
+* Gitter: https://app.gitter.im/#/room/%23kilim:gitter.im
 
 ## Introduction
 Welcome to the ETHGünü Neufi Workshop. Our session will be dedicated to exploring the dynamic world of Ethereum smart contracts. This workshop is designed to provide a hands-on introduction to the concept of decentralized computing. By actively participating in a collaborative drawing canvas, you'll gain firsthand experience in interacting with smart contracts. If you're up for the challenge, you can modify our example smart contracts to interact with the canvas programatically. We hope that some participants will be deploying custom smart contracts and other participants interact with these contracts developed in this workshop!
