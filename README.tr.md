@@ -1,5 +1,8 @@
 # ETHGünü Neufi Workshop
 > ETHGünü Devconnect 2023 Neufi Atölyesi
+* Website: https://ethgunu.vercel.app/en
+* GitHub: https://github.com/neu-fi/kilim
+* Gitter: https://app.gitter.im/#/room/%23kilim:gitter.im
 
 ## Giriş
 ETHGünü Neufi atölyesine hoş geldiniz. Oturumumuz, Ethereum akıllı sözleşmelerinin dinamik dünyasını keşfetmeye adanacak. Bu atölye, merkezi olmayan bilgi işlemenin konseptini akıllı sözleşme kullanarak deneyimlemeyi amaçlamaktadır. Bu workshop için hazırladığımız kolaboratif çizim oyununda yer alarak, akıllı sözleşmelerle etkileşimde bulunma, kendi akıllı sözleşmelerinizi oluşturma, test etme ve çalıştırma konusunda doğrudan deneyim kazanacaksınız. Eğer kendinizi teknik anlamda rahat hissediyorsanız, kendi motiflerinizi yaratmak için örnek akıllı sözleşmelerimizi değiştirebilirsiniz. Bu atölyede geliştirilen akıllı sözleşmelerlin diğer katılımcılarla da paylaşılıp kullanılmalarına olanak tanınmasını umuyoruz!
